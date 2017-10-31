@@ -52,13 +52,13 @@ func (c *CmdDeviceList) Run() error {
 
 func (c *CmdDeviceList) output(devs []keybase1.Device) {
 	w := GlobUI.DefaultTabWriter()
-	fmt.Fprintf(w, "Name\tType\tID\tCreated\tLast Used\n")
-	fmt.Fprintf(w, "==========\t==========\t==========\t==========\t==========\n")
+	fmt.Fprintf(w, "Name\tType\tID\tKID\tCreated\tLast Used\n")
+	fmt.Fprintf(w, "==========\t==========\t==========\t==========\t==========\t==========\n")
 	for _, v := range devs {
 		cTime := keybase1.FromTime(v.CTime)
 		lastUsedTime := keybase1.FromTime(v.LastUsedTime)
 		timeFormat := "2006 Jan 2 15:04:05"
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n", v.Name, v.Type, v.DeviceID, cTime.Format(timeFormat), lastUsedTime.Format(timeFormat))
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\n", v.Name, v.Type, v.DeviceID, v.VerifyKey, cTime.Format(timeFormat), lastUsedTime.Format(timeFormat))
 	}
 	w.Flush()
 }
