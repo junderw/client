@@ -36,11 +36,15 @@ export type Props = {
   onAddPeople: () => void,
   onInviteByEmail: () => void,
   setSelectedTab: (t: ?Constants.TabKey) => void,
+  onCreateSubteam: () => void,
+  onDeleteTeam: () => void,
   onLeaveTeam: () => void,
   onManageChat: () => void,
   onClickOpenTeamSetting: () => void,
   isTeamOpen: boolean,
   youCanAddPeople: boolean,
+  youCanCreateSubteam: boolean,
+  youCanDeleteTeam: boolean,
 }
 
 const Help = isMobile
@@ -136,6 +140,8 @@ class Team extends React.PureComponent<Props> {
       showMenu,
       setShowMenu,
       onAddPeople,
+      onCreateSubteam,
+      onDeleteTeam,
       onInviteByEmail,
       onLeaveTeam,
       selectedTab,
@@ -143,6 +149,8 @@ class Team extends React.PureComponent<Props> {
       onManageChat,
       you,
       youCanAddPeople,
+      youCanCreateSubteam,
+      youCanDeleteTeam,
     } = this.props
 
     const me = members.find(member => member.username === you)
@@ -213,6 +221,19 @@ class Team extends React.PureComponent<Props> {
       }
     }
 
+    const popupMenuItems = [
+      {onClick: onManageChat, title: 'Manage chat channels'},
+      {onClick: onLeaveTeam, title: 'Leave team', danger: true},
+    ]
+
+    if (youCanCreateSubteam) {
+      popupMenuItems.push({onClick: onCreateSubteam, title: 'Create subteam'})
+    }
+
+    if (youCanDeleteTeam) {
+      popupMenuItems.push({onClick: onDeleteTeam, title: 'Delete team', danger: true})
+    }
+
     return (
       <Box style={{...globalStyles.flexBoxColumn, alignItems: 'center', flex: 1}}>
         <Avatar isTeam={true} teamname={name} size={64} />
@@ -242,10 +263,7 @@ class Team extends React.PureComponent<Props> {
         {contents}
         {showMenu &&
           <PopupMenu
-            items={[
-              {onClick: onManageChat, title: 'Manage chat channels'},
-              {onClick: onLeaveTeam, title: 'Leave team', danger: true},
-            ]}
+            items={popupMenuItems}
             onHidden={() => setShowMenu(false)}
             style={{position: 'absolute', right: globalMargins.tiny, top: globalMargins.large}}
           />}
