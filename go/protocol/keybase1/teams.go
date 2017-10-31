@@ -1938,9 +1938,10 @@ func (o TeamSetSettingsArg) DeepCopy() TeamSetSettingsArg {
 }
 
 type TeamCreateSeitanTokenArg struct {
-	SessionID int      `codec:"sessionID" json:"sessionID"`
-	Name      string   `codec:"name" json:"name"`
-	Role      TeamRole `codec:"role" json:"role"`
+	SessionID int             `codec:"sessionID" json:"sessionID"`
+	Name      string          `codec:"name" json:"name"`
+	Role      TeamRole        `codec:"role" json:"role"`
+	Label     SeitanIKeyLabel `codec:"label" json:"label"`
 }
 
 func (o TeamCreateSeitanTokenArg) DeepCopy() TeamCreateSeitanTokenArg {
@@ -1948,6 +1949,7 @@ func (o TeamCreateSeitanTokenArg) DeepCopy() TeamCreateSeitanTokenArg {
 		SessionID: o.SessionID,
 		Name:      o.Name,
 		Role:      o.Role.DeepCopy(),
+		Label:     o.Label.DeepCopy(),
 	}
 }
 

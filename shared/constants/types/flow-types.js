@@ -6357,7 +6357,8 @@ export type teamsTeamCreateRpcParam = Exact<{
 
 export type teamsTeamCreateSeitanTokenRpcParam = Exact<{
   name: string,
-  role: TeamRole
+  role: TeamRole,
+  label: SeitanIKeyLabel
 }>
 
 export type teamsTeamCreateWithSettingsRpcParam = Exact<{

@@ -1761,6 +1761,10 @@
         {
           "name": "role",
           "type": "TeamRole"
+        },
+        {
+          "name": "label",
+          "type": "SeitanIKeyLabel"
         }
       ],
       "response": "string"

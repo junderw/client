@@ -539,7 +539,7 @@ protocol teams {
   TeamTreeResult teamTree(int sessionID, TeamName name);
   void teamDelete(int sessionID, string name);
   void teamSetSettings(int sessionID, string name, TeamSettings settings);
-  string teamCreateSeitanToken(int sessionID, string name, TeamRole role);
+  string teamCreateSeitanToken(int sessionID, string name, TeamRole role, SeitanIKeyLabel label);
 
   record BulkRes {
     array<string> invited;
